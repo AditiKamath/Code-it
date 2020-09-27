@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/uploadback1"
     android:orientation="vertical"
     tools:context=".VideoUploadActivity">
 
@@ -16,64 +17,106 @@
         android:fontFamily="@font/amarante"
         android:text="Choose video to upload"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="#fff"
         android:textSize="28sp" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="12dp"
         android:id="@+id/layout_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_height="wrap_content">
+        android:layout_margin="12dp"
+        android:orientation="vertical">
 
 
         <VideoView
+            android:id="@+id/Video_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:id="@+id/Video_view"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp" />
+
         <EditText
+            android:id="@+id/video_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="name"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColorHint="#fff"
             android:paddingLeft="20dp"
-            android:id="@+id/video_name"/>
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="20dp"
+        android:id="@+id/layout_button"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_below="@id/layout_video"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="choose video"
-            android:layout_margin="16dp"
-            android:layout_below="@id/video_name"
-            android:id="@+id/choose_btn"/>
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/choose_btn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Upload video"
+            android:layout_below="@id/video_name"
+            android:layout_margin="16dp"
+            android:background="#fff"
+            android:layout_weight="1"
+            android:text="choose video" />
+
+        <Button
+            android:id="@+id/upload_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:id="@+id/upload_btn"/>
+            android:layout_weight="1"
+            android:background="#fff"
+            android:text="Upload video" />
 
     </LinearLayout>
 
 
     <ProgressBar
-        android:layout_below="@id/layout_video"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progress_bar"
-        android:visibility="invisible"/>
+        android:layout_below="@id/layout_video"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_button"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/go_to_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="go to register activity"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/go_to_userdashboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="go to user dashboard"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/go_to_doc_upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="goto document upload"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

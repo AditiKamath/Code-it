@@ -19,7 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.firebase.AuthActivity;
+import com.example.firebase.FileActivity;
 import com.example.firebase.R;
+import com.example.firebase.StartActivity;
 import com.example.firebase.Video;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,12 +32,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+
 import static android.app.Activity.RESULT_OK;
 
 
 public class tab1 extends Fragment {
     private Button chooseBtn;
     private Button uploadBtn;
+    private Button gotoRegister;
+    private Button gotoUserDashboard;
     private VideoView videoView;
     private Uri videoUri;
     MediaController mediaController;
@@ -49,14 +56,37 @@ public class tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view  = inflater.inflate(R.layout.fragment_tab1, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
         chooseBtn = view.findViewById(R.id.choose_btn);
-        uploadBtn =  view.findViewById(R.id.upload_btn);
+        uploadBtn = view.findViewById(R.id.upload_btn);
         video_name = view.findViewById(R.id.video_name);
         videoView = view.findViewById(R.id.Video_view);
         progressBar = view.findViewById(R.id.progress_bar);
         mediaController = new MediaController(getContext());
-
+        gotoRegister = view.findViewById(R.id.go_to_register);
+        gotoRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AuthActivity.class);
+                startActivity(intent);
+            }
+        });
+        gotoUserDashboard = view.findViewById(R.id.go_to_userdashboard);
+        gotoUserDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), StartActivity.class);
+                startActivity(intent);
+            }
+        });
+       Button go_to_doc_upload = view.findViewById(R.id.go_to_doc_upload);
+        go_to_doc_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FileActivity.class);
+                startActivity(intent);
+            }
+        });
         mStorageRef = FirebaseStorage.getInstance().getReference("videos");
         mDataBaseRef = FirebaseDatabase.getInstance().getReference("videos");
 
@@ -79,12 +109,14 @@ public class tab1 extends Fragment {
 
         return view;
     }
-    private  void ChooseVideo(){
+
+    private void ChooseVideo() {
         Intent intent = new Intent();
         intent.setType("video/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_VIDEO_REQUEST);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -97,7 +129,9 @@ public class tab1 extends Fragment {
             videoView.setVideoURI(videoUri);
 
 
-        }}
+        }
+    }
+
     private String getFileExtension(Uri videoUri) {
         ContentResolver contentResolver = getActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
@@ -107,16 +141,16 @@ public class tab1 extends Fragment {
     private void UploadVideo() {
 
         progressBar.setVisibility(View.VISIBLE);
-        if (videoUri != null){
+        if (videoUri != null) {
             StorageReference reference = mStorageRef.child(System.currentTimeMillis() +
-                    "." +getFileExtension(videoUri));
+                    "." + getFileExtension(videoUri));
 
             reference.putFile(videoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getContext(),"Upload successful",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
                             taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(task ->
                             {
                                 String url = task.getResult().toString();
@@ -134,13 +168,13 @@ public class tab1 extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
 
-        }else {
-            Toast.makeText(getContext(),"No file selected", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
         }
 
 
