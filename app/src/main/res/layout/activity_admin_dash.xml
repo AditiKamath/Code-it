@@ -5,35 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AdminDashActivity">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:id="@+id/gotovideoupload"
-        android:text="go to video upload"/>
 
-    <TextView
-        android:layout_alignParentTop="true"
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
-    <Button
-        android:layout_below="@id/gotovideoupload"
-        android:layout_margin="20dp"
-        android:id="@+id/logout_btn"
-        android:layout_width="wrap_content"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/admin_dash_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="LOGOUT"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/goto_quizactivtiy"
-        android:layout_below="@id/logout_btn"
-        android:layout_centerHorizontal="true"
-        android:text="go to quiz "/>
+        android:background="@color/colorPrimaryDark" />
+
+    <FrameLayout
+        android:id="@+id/admin_dash_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/admin_dash_toolbar">
+    </FrameLayout>
+
+
 
 </RelativeLayout>

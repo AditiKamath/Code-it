@@ -40,11 +40,11 @@
                         android:src="@drawable/icon" />
 
                     <TextView
+                        android:id="@+id/topTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="USER_NAME"
-                        android:layout_marginTop="12dp"
                         android:textColor="#fff"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -225,7 +225,14 @@
 
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+
                 </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="logout"
+                    android:id="@+id/log_out"
+                    android:layout_height="wrap_content"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

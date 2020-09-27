@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         reff = FirebaseDatabase.getInstance().getReference().child("Student").child("1");
         getCourse();
         getProgress();
-        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), FileActivity.class);
         if(isviewingGraph) {
 
             setupPieChart();

@@ -12,6 +12,17 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.File;
+
 public class AuthActivity extends AppCompatActivity
 {
     FirebaseAuth firebaseAuth;
@@ -28,13 +39,13 @@ public class AuthActivity extends AppCompatActivity
         displayFragment(new LoginModeFragment(), false);
     }
 
-    @Override
+
     public void onStart()
     {
         super.onStart();
         if(firebaseAuth.getCurrentUser() != null)
         {
-            Intent intent = new Intent(this, HomeActivity.class);
+            Intent intent = new Intent(this, StartActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }

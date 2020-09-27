@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class LoginFragment extends Fragment
@@ -27,8 +29,9 @@ public class LoginFragment extends Fragment
 
     boolean authEntity; //Student or admin
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
 
-    private boolean passwordVisible = false;
+    private boolean passwordVisible = true;
     private EditText passwordField;
     private ImageButton showPssBtn;
 
@@ -57,9 +60,9 @@ public class LoginFragment extends Fragment
         initializeUi(fragmentView);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         ((Button)fragmentView.findViewById(R.id.login_btn)).setOnClickListener(clickListener);
-
         showPssBtn.setOnClickListener(clickListener);
 
         return fragmentView;
@@ -88,29 +91,64 @@ public class LoginFragment extends Fragment
         /**Logs the user in firebase using the entered credentials**/
 
         //Getting the entered user info
-        String email  = ((EditText)getView().findViewById(R.id.login_email)).getText().toString().trim(); //Getting the entered email
-        String password = ((EditText)getView().findViewById(R.id.login_password)).getText().toString().trim(); //Getting the entered password
+        final String email  = ((EditText)getView().findViewById(R.id.login_email)).getText().toString().trim(); //Getting the entered email
+        final String password = ((EditText)getView().findViewById(R.id.login_password)).getText().toString().trim(); //Getting the entered password
 
         //Checking if the entered user credentials are valid
         if(validCredentials(email, password))
         {
-            //Registering the user in firebase
-            Task<AuthResult> authRes = firebaseAuth.signInWithEmailAndPassword(email, password);
-            authRes.addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>()
-            {
+            //Checking identity
+            firestore.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task)
+                public void onComplete(@NonNull Task<DocumentSnapshot> task)
                 {
                     if(task.isSuccessful())
                     {
-                        Intent intent = new Intent(getActivity(), HomeActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                    else
+                        DocumentSnapshot doc = task.getResult();
+                        if(!doc.exists())
+                            Toast.makeText(getActivity(), "Account does not exist", Toast.LENGTH_SHORT).show();
+                        else
+                        {
+                            if(authEntity == (Boolean)doc.get("isAdmin"))
+                                Toast.makeText(getActivity(), String.format("%s is %s account", email, authEntity ? "an admin" : "a student"),Toast.LENGTH_SHORT).show();
+                            else
+                            {
+                                //Logging the user in firebase
+                                Task<AuthResult> authRes = firebaseAuth.signInWithEmailAndPassword(email, password);
+                                authRes.addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>()
+                                {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task)
+                                    {
+                                        if(task.isSuccessful())
+                                        {
+                                            if(authEntity)
+                                            {
+                                                //Student dashboard
+                                                Intent intent = new Intent(getActivity(), StartActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
+                                            }
+                                            else {
+                                                Intent intent = new Intent(getActivity(), AdminDashActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                        else
+                                            Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+
+                    }else{
                         Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             });
+
         }
     }
 
