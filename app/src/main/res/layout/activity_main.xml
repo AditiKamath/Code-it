@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="550dp"
-        android:layout_marginEnd="300dp"
-        android:background="@drawable/round_button"
-        android:onClick="back"
-        android:text="GoBack"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="@+id/chart"
-        app:layout_constraintEnd_toEndOf="@+id/chart"
-        app:layout_constraintStart_toStartOf="@+id/chart"
-        app:layout_constraintTop_toTopOf="@+id/chart" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"

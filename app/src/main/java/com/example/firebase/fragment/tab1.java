@@ -63,7 +63,7 @@ public class tab1 extends Fragment {
         videoView = view.findViewById(R.id.Video_view);
         progressBar = view.findViewById(R.id.progress_bar);
         mediaController = new MediaController(getContext());
-        gotoRegister = view.findViewById(R.id.go_to_register);
+  /*      gotoRegister = view.findViewById(R.id.go_to_register);
         gotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +86,7 @@ public class tab1 extends Fragment {
                 Intent intent = new Intent(getContext(), FileActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         mStorageRef = FirebaseStorage.getInstance().getReference("videos");
         mDataBaseRef = FirebaseDatabase.getInstance().getReference("videos");
 

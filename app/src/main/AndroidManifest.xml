@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
         <activity
             android:name=".AddQuizActivity"
             android:screenOrientation="portrait"
@@ -41,7 +41,7 @@
         <activity
             android:name=".CourseActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:parentActivityName=".StartActivity"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

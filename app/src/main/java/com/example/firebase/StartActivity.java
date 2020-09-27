@@ -81,6 +81,7 @@ public class StartActivity extends AppCompatActivity {
                         //if condition needs to be added for user that has signed in or it will iterate and add all the users available in the
                         //database
                         String userName = dss.getValue().toString();
+                        if(auth.getCurrentUser()!=null)
                         topTextView.setText(auth.getCurrentUser().getDisplayName());
                     }
                 }

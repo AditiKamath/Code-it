@@ -32,7 +32,7 @@ public class CourseActivity extends AppCompatActivity {
         get_videos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),Videoretrieve.class);
+                Intent intent2 = new Intent(getApplicationContext(),VideoUploadActivity.class);
                 startActivity(intent2);
             }
         });

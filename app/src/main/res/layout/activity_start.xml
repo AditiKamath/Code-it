@@ -227,13 +227,13 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="logout"
-                    android:id="@+id/log_out"
-                    android:layout_height="wrap_content"/>
             </RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="logout"
+                android:id="@+id/log_out"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

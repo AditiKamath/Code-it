@@ -86,37 +86,37 @@
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_button"
-        android:orientation="horizontal">
+    <!--  <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@id/layout_button"
+         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/go_to_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="go to register activity"
-            android:textAllCaps="false" />
+             android:id="@+id/go_to_register"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="go to register activity"
+             android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/go_to_userdashboard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="go to user dashboard"
-            android:textAllCaps="false" />
+         <Button
+             android:id="@+id/go_to_userdashboard"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="go to user dashboard"
+             android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/go_to_doc_upload"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="goto document upload"
-            android:textAllCaps="false" />
+         <Button
+             android:id="@+id/go_to_doc_upload"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="goto document upload"
+             android:textAllCaps="false" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </RelativeLayout>

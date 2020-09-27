@@ -201,7 +201,7 @@ public class RegisterFragment extends Fragment
         int minPasswordSize = 6;
         if (password.length() < minPasswordSize)
         {
-            Toast.makeText(getActivity(), "Password size has to atleast be ${minPasswordSize}", Toast.LENGTH_SHORT).show();//Showing user the error message
+            Toast.makeText(getActivity(), "Password size has to atleast be 6 characters", Toast.LENGTH_SHORT).show();//Showing user the error message
             return false;
         }
 
