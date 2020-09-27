@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/uploadback1"
+    tools:context=".FileActivity">
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_width="wrap_content"
+        android:background="#fff"
+        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_choose_image"
+        android:text="Choose File"/>
+    <EditText
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_text_file_name"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:layout_toEndOf="@id/button_choose_image"
+        android:hint="Enter file name"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Upload"
+        android:background="#fff"
+        android:id="@+id/button_upload"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_show_uploads"
+        android:layout_alignBottom="@id/button_upload"
+        android:layout_toEndOf="@id/button_upload"
+        android:layout_alignTop="@id/button_upload"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:text="Show uploads"
+        android:layout_marginStart="25dp"
+        android:textSize="16sp"
+        android:onClick="showPDFS"/>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/progress_bar"
+        android:layout_above="@id/button_upload"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>
